@@ -13,11 +13,11 @@ struct FPartySlot
 
 	// 사용 캐릭터 클래스(블프에서 세팅)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<class ADRBaseCharacter> CharacterClass;
+	TSubclassOf<class BaseCharacter> CharacterClass;
 
 	// 런타임에 스폰된 폰(풀링 대상)
 	UPROPERTY(Transient)
-	TWeakObjectPtr<class ADRBaseCharacter> SpawnedPawn = nullptr;
+	TWeakObjectPtr<class BaseCharacter> SpawnedPawn = nullptr;
 };
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -47,12 +47,12 @@ public:
 
     // 현재 활성 폰 가져오기
     UFUNCTION(BlueprintPure, Category = "Party")
-    class ADRBaseCharacter* GetActivePawn() const;
+    class BaseCharacter* GetActivePawn() const;
 
 private:
     class APlayerController* GetPC() const;
-    class ADRBaseCharacter* SpawnIfNeeded(int32 SlotIndex);
-    void ActivatePawn(ADRBaseCharacter* NewPawn, ADRBaseCharacter* OldPawn);
-    void DeactivatePawn(ADRBaseCharacter* Pawn);
+    class BaseCharacter* SpawnIfNeeded(int32 SlotIndex);
+    void ActivatePawn(BaseCharacter* NewPawn, BaseCharacter* OldPawn);
+    void DeactivatePawn(BaseCharacter* Pawn);
 		
 };
